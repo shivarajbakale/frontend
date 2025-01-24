@@ -5,13 +5,19 @@ import { z } from "zod";
 
 type FormValues = z.infer<typeof createTodoSchema>;
 
-const CreateTodo = ({
-  onSubmit,
-}: {
+interface TodoFormProps {
+  initialData?: FormValues;
   onSubmit: (values: FormValues) => void;
-}) => {
+  submitLabel?: string;
+}
+
+const TodoForm = ({
+  initialData,
+  onSubmit,
+  submitLabel = "Submit",
+}: TodoFormProps) => {
   const form = useForm({
-    initialValues: {
+    initialValues: initialData || {
       title: "",
       description: "",
     },
@@ -45,11 +51,11 @@ const CreateTodo = ({
           />
         </div>
         <Button type="submit" disabled={!form.isValid()}>
-          Create Todo
+          {submitLabel}
         </Button>
       </Stack>
     </form>
   );
 };
 
-export default CreateTodo;
+export default TodoForm;

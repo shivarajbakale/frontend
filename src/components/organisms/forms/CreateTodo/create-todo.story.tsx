@@ -1,23 +1,36 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import CreateTodo from "./index";
+import TodoForm from "./index";
 
 const meta = {
-  title: "Forms/CreateTodo",
-  component: CreateTodo,
+  title: "Forms/TodoForm",
+  component: TodoForm,
   parameters: {
     layout: "centered",
   },
   tags: ["autodocs"],
-} satisfies Meta<typeof CreateTodo>;
+} satisfies Meta<typeof TodoForm>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {
+export const Create: Story = {
   args: {
+    submitLabel: "Create Todo",
     onSubmit: (values) => {
-      console.log(values);
+      console.log("Creating:", values);
     },
   },
-  render: (args) => <CreateTodo {...args} />,
+};
+
+export const Edit: Story = {
+  args: {
+    submitLabel: "Update Todo",
+    initialData: {
+      title: "Existing Todo",
+      description: "This is an existing todo being edited",
+    },
+    onSubmit: (values) => {
+      console.log("Updating:", values);
+    },
+  },
 };

@@ -35,6 +35,12 @@ export const Default: Story = {
         completed: false,
       },
     ],
+    onDelete: (id) => {
+      console.log("delete", id);
+    },
+    onEdit: (id) => {
+      console.log("edit", id);
+    },
   },
   render: (args) => <ListTodo {...args} />,
 };

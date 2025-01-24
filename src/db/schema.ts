@@ -22,6 +22,9 @@ export const todoSchemaLiteral = {
     title: {
       type: 'string',
     },
+    description: {
+      type: 'string',
+    },
     completed: {
       type: 'boolean',
     },
@@ -29,7 +32,7 @@ export const todoSchemaLiteral = {
       type: 'number',
     },
   },
-  required: ['id', 'title', 'completed', 'createdAt'],
+  required: ['id', 'title', 'createdAt'],
 } as const;
 
 export const userSchemaLiteral = {

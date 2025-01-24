@@ -71,7 +71,6 @@ export function HomePage() {
     <Container>
       <Stack>
         <Title>Todos</Title>
-
         <form
           onSubmit={(e) => {
             e.preventDefault();

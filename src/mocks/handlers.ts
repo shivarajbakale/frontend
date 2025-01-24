@@ -1,4 +1,3 @@
-import { todoHandlers } from './todoHandlers';
-import { userHandlers } from './userHandlers';
+import { todoHandlers } from "./todoHandlers";
 
-export const handlers = [...todoHandlers, ...userHandlers];
+export const handlers = [...todoHandlers];

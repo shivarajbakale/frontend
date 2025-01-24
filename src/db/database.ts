@@ -1,5 +1,6 @@
 import { createRxDatabase } from "rxdb";
 import { getRxStorageDexie } from "rxdb/plugins/storage-dexie";
+
 import { wrappedValidateAjvStorage } from "rxdb/plugins/validate-ajv";
 import { todoSchema, userSchema } from "./schema";
 

@@ -1,10 +1,10 @@
-import { createRxDatabase } from 'rxdb';
-import { getRxStorageDexie } from 'rxdb/plugins/storage-dexie';
-import { wrappedValidateAjvStorage } from 'rxdb/plugins/validate-ajv';
-import { todoSchema, userSchema } from './schema';
+import { createRxDatabase } from "rxdb";
+import { getRxStorageDexie } from "rxdb/plugins/storage-dexie";
+import { wrappedValidateAjvStorage } from "rxdb/plugins/validate-ajv";
+import { todoSchema, userSchema } from "./schema";
 
 const appDatabase = await createRxDatabase({
-  name: 'mydatabase',
+  name: "mydatabase",
   storage: wrappedValidateAjvStorage({
     storage: getRxStorageDexie(),
   }),

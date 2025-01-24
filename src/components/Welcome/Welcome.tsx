@@ -1,9 +1,7 @@
-import { Anchor, Button, Container, Text, Title } from '@mantine/core';
-import { useNavigate } from 'react-router';
+import { Anchor, Text, Title } from '@mantine/core';
 import classes from './Welcome.module.css';
 
 export function Welcome() {
-  const navigate = useNavigate();
   return (
     <>
       <Title className={classes.title} ta="center" mt={100}>
@@ -25,9 +23,6 @@ export function Welcome() {
         </Anchor>
         . To get started edit pages/Home.page.tsx file.
       </Text>
-      <Container>
-        <Button onClick={() => navigate('/homepage')}>Go to Homepage</Button>
-      </Container>
     </>
   );
 }

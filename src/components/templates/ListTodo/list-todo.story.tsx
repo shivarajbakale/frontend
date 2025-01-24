@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import ListTodo from "./index";
 
 const meta = {
-  title: "Templates/ListTodo",
+  title: "Organisms/ListTodo",
   component: ListTodo,
   parameters: {
     layout: "centered",

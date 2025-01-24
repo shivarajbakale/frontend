@@ -7,6 +7,8 @@ import { BrowserRouter } from "react-router-dom";
 import { DatabaseProvider } from "./db/DatabaseProvider";
 import { Router } from "./pages/routes";
 import { theme } from "./theme";
+import { Notifications } from "@mantine/notifications";
+import "@mantine/notifications/styles.css";
 
 // Create a client
 const queryClient = new QueryClient({
@@ -31,6 +33,7 @@ export default function App() {
       <DatabaseProvider>
         <BrowserRouter>
           <MantineProvider theme={theme}>
+            <Notifications />
             <Router />
           </MantineProvider>
         </BrowserRouter>

@@ -1,5 +1,6 @@
-import { Anchor, Text, Title } from "@mantine/core";
+import { Anchor, Button, Container, Stack, Text, Title } from "@mantine/core";
 import classes from "./Welcome.module.css";
+import { Link } from "react-router-dom";
 
 export function Welcome() {
   return (
@@ -23,6 +24,14 @@ export function Welcome() {
         </Anchor>
         . To get started edit pages/Home.page.tsx file.
       </Text>
+      <Container className="flex justify-center gap-4 mt-4">
+        <Button component={Link} to="/todo/create">
+          Create Todo
+        </Button>
+        <Button component={Link} to="/todo/list">
+          List Todo
+        </Button>
+      </Container>
     </>
   );
 }

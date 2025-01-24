@@ -1,4 +1,4 @@
-import { Anchor, Button, Container, Stack, Text, Title } from "@mantine/core";
+import { Anchor, Button, Container, Text, Title } from "@mantine/core";
 import classes from "./Welcome.module.css";
 import { Link } from "react-router-dom";
 

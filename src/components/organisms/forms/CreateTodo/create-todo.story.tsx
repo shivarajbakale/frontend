@@ -14,5 +14,10 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  render: () => <CreateTodo />,
+  args: {
+    onSubmit: (values) => {
+      console.log(values);
+    },
+  },
+  render: (args) => <CreateTodo {...args} />,
 };

@@ -1,8 +1,15 @@
 import { Button, InputLabel, Stack, TextInput, Textarea } from "@mantine/core";
 import { useForm, zodResolver } from "@mantine/form";
 import { createTodoSchema } from "./create-todo.schema";
+import { z } from "zod";
 
-const CreateTodo = () => {
+type FormValues = z.infer<typeof createTodoSchema>;
+
+const CreateTodo = ({
+  onSubmit,
+}: {
+  onSubmit: (values: FormValues) => void;
+}) => {
   const form = useForm({
     initialValues: {
       title: "",
@@ -12,8 +19,8 @@ const CreateTodo = () => {
     validateInputOnBlur: true,
   });
 
-  const handleSubmit = (values: typeof form.values) => {
-    console.log(values);
+  const handleSubmit = (values: FormValues) => {
+    onSubmit(values);
     form.reset();
   };
 

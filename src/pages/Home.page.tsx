@@ -86,7 +86,7 @@ export function HomePage() {
           <Button type="submit">Add Todo</Button>
         </form>
 
-        {todos?.map((todo) => <Text key={todo.id}>{todo.title}</Text>)}
+        {todos?.map((todo: any) => <Text key={todo.id}>{todo.title}</Text>)}
       </Stack>
     </Container>
   );

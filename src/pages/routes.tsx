@@ -1,5 +1,5 @@
-import { Welcome } from '@/components/Welcome/Welcome';
 import { Route, Routes } from 'react-router-dom';
+import { Welcome } from '../components/organisms/Welcome/Welcome';
 import { HomePage } from './Home.page';
 
 export function Router() {

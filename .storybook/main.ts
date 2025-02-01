@@ -7,10 +7,22 @@ const config: StorybookConfig = {
     enableCrashReports: false,
   },
   stories: ["../src/**/*.mdx", "../src/**/*.story.@(js|jsx|ts|tsx)"],
-  addons: ["storybook-dark-mode"],
+  addons: [
+    "@storybook/addon-essentials",
+    "@storybook/addon-a11y",
+    "@storybook/addon-interactions",
+    "@storybook/addon-links",
+    "@storybook/addon-styling",
+    "@storybook/addon-coverage",
+    "@storybook/addon-console",
+    "storybook-dark-mode",
+  ],
   framework: {
     name: "@storybook/react-vite",
     options: {},
+  },
+  docs: {
+    autodocs: true,
   },
 };
 

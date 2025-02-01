@@ -6,13 +6,32 @@ import { addons } from "@storybook/preview-api";
 import { DARK_MODE_EVENT_NAME } from "storybook-dark-mode";
 import { MantineProvider, useMantineColorScheme } from "@mantine/core";
 import { theme } from "../src/theme";
+import { withConsole } from "@storybook/addon-console";
 
 const channel = addons.getChannel();
 
 export const parameters = {
   layout: "fullscreen",
   options: {
-    showPanel: false,
+    showPanel: true,
+  },
+  actions: { argTypesRegex: "^on[A-Z].*" },
+  controls: {
+    matchers: {
+      color: /(background|color)$/i,
+      date: /Date$/,
+    },
+  },
+  a11y: {
+    element: "#root",
+    manual: false,
+  },
+  backgrounds: {
+    default: "light",
+    values: [
+      { name: "light", value: "#ffffff" },
+      { name: "dark", value: "#1A1B1E" },
+    ],
   },
 };
 
@@ -36,4 +55,5 @@ export const decorators = [
   (renderStory: any) => (
     <MantineProvider theme={theme}>{renderStory()}</MantineProvider>
   ),
+  (storyFn: any, context: any) => withConsole()(storyFn)(context),
 ];

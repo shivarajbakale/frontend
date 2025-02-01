@@ -5,7 +5,10 @@ export const todosApi = {
   // Get all todos
   getAll: async () => {
     const response = await apiClient.get<Todo[]>("/todos");
-    return response.data;
+    return response.data.sort(
+      (a, b) =>
+        new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
+    );
   },
 
   // Get single todo

@@ -1,36 +1,26 @@
-import TodoForm from "@/components/organisms/forms/CreateTodo";
 import { Container, Title } from "@mantine/core";
-import { notifications } from "@mantine/notifications";
-import { useCreateTodo } from "@/utils/queries/todo.queries";
-import { useEffect } from "react";
-import { useNavigate } from "react-router";
+import CreateTodoForm from "@/components/organisms/forms/CreateTodo";
+import { useNavigate } from "react-router-dom";
+import { useCreateTodo, useTodos } from "@/utils/queries/todo.queries";
 
-const CreateTodoPage = () => {
-  const { mutate: createTodo, isSuccess } = useCreateTodo();
+export const CreateTodoPage = () => {
+  const { mutate: createTodo } = useCreateTodo();
+  const { refetch: refetchTodos } = useTodos();
   const navigate = useNavigate();
 
-  const handleSubmit = (values: any) => {
-    createTodo(values);
-    navigate("/");
+  const handleSubmit = async (values: any) => {
+    await createTodo(values);
+    await refetchTodos();
+    navigate("/todos");
   };
 
-  useEffect(() => {
-    if (isSuccess) {
-      navigate("/todos");
-      notifications.show({
-        title: "Todo Created",
-        message: "Todo created successfully",
-        color: "green",
-      });
-    }
-  }, [isSuccess]);
   return (
-    <Container className="flex justify-center items-center h-screen">
-      <Container className="w-[50%] mb-[200px]">
-        <Title order={2} className="text-center">
-          Create Todo
-        </Title>
-        <TodoForm onSubmit={handleSubmit} />
+    <Container>
+      <Title order={2} className="text-center">
+        Create New Todo
+      </Title>
+      <Container>
+        <CreateTodoForm onSubmit={handleSubmit} />
       </Container>
     </Container>
   );

@@ -1,11 +1,14 @@
 import "@mantine/core/styles.css";
-import { MantineProvider } from "@mantine/core";
+import { MantineProvider, AppShell } from "@mantine/core";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { useEffect } from "react";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Navigation } from "./components/organisms/Navigation";
+import ListTodoPage from "./pages/ListTodo.page";
+import CreateTodoPage from "./pages/CreateTodo.page";
+import HomePage from "./pages/Home.page";
 
-import { Router } from "./pages/routes";
 import { theme } from "./theme";
 import { Notifications } from "@mantine/notifications";
 import "@mantine/notifications/styles.css";
@@ -30,12 +33,21 @@ export default function App() {
   }, []);
   return (
     <QueryClientProvider client={queryClient}>
-      <BrowserRouter>
+      <Router>
         <MantineProvider theme={theme}>
           <Notifications />
-          <Router />
+          <AppShell header={{ height: 60 }} padding="md">
+            <Navigation />
+            <AppShell.Main>
+              <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/todos" element={<ListTodoPage />} />
+                <Route path="/todos/new" element={<CreateTodoPage />} />
+              </Routes>
+            </AppShell.Main>
+          </AppShell>
         </MantineProvider>
-      </BrowserRouter>
+      </Router>
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );

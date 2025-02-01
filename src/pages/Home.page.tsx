@@ -1,11 +1,17 @@
-import { Container, Stack, Title } from "@mantine/core";
+import { Container, Title, Text, Stack } from "@mantine/core";
 
-export function HomePage() {
+export const HomePage = () => {
   return (
     <Container>
-      <Stack>
-        <Title>Todos</Title>
+      <Stack gap="md">
+        <Title>Welcome to Todo App</Title>
+        <Text>
+          This is a simple todo application built with React, TypeScript, and
+          Mantine UI. You can create, read, update, and delete todos.
+        </Text>
       </Stack>
     </Container>
   );
-}
+};
+
+export default HomePage;

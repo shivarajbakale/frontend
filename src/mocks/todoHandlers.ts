@@ -8,7 +8,11 @@ export const todoHandlers = [
   http.get("/api/todos", async () => {
     try {
       const response = await jsonServerClient.get("/todos");
-      return HttpResponse.json(response.data);
+      const sortedTodos = response.data.sort(
+        (a: Todo, b: Todo) =>
+          new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
+      );
+      return HttpResponse.json(sortedTodos);
     } catch (error) {
       return new HttpResponse(null, { status: 500 });
     }

@@ -22,6 +22,12 @@ export const Navigation = () => {
           >
             New Todo
           </Link>
+          <Link
+            to="/payment"
+            style={{ textDecoration: "none", color: "inherit" }}
+          >
+            Make Payment
+          </Link>
         </Group>
       </Group>
     </AppShell.Header>

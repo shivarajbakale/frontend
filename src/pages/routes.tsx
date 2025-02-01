@@ -1,23 +1,30 @@
 import { Route, Routes } from "react-router-dom";
 import UpdateTodo from "../components/organisms/forms/UpdateTodo";
-import { Welcome } from "../components/organisms/Welcome/Welcome";
 import ListTodoPage from "./ListTodo.page";
 import { HomePage } from "./Home.page";
 import CreateTodoPage from "./CreateTodo.page";
+import { PaymentConfirmationPage } from "./PaymentConfirmation.page";
+import { PaymentPage } from "./Payment.page";
+import { ErrorBoundary } from "../components/organisms/ErrorBoundary/ErrorBoundary";
 
 export function Router() {
   return (
-    <Routes>
-      <Route path="/" element={<Welcome />} />
-      <Route path="/homepage" element={<HomePage />} />
-      {/* Todo Create Route */}
-      <Route path="/todo/create" element={<CreateTodoPage />} />
-      {/* Todo Update Route */}
-      <Route path="/todo/update/:id" element={<UpdateTodo />} />
-      {/* Todo List Route */}
-      <Route path="/todo/list" element={<ListTodoPage />} />
-      {/* Need a 404 route here */}
-      <Route path="*" element={<div>404</div>} />
-    </Routes>
+    <ErrorBoundary>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        {/* Todo Routes */}
+        <Route path="/todos" element={<ListTodoPage />} />
+        <Route path="/todos/new" element={<CreateTodoPage />} />
+        <Route path="/todo/update/:id" element={<UpdateTodo />} />
+        {/* Payment Routes */}
+        <Route path="/payment" element={<PaymentPage />} />
+        <Route
+          path="/payment-confirmation"
+          element={<PaymentConfirmationPage />}
+        />
+        {/* 404 Route */}
+        <Route path="*" element={<div>404</div>} />
+      </Routes>
+    </ErrorBoundary>
   );
 }

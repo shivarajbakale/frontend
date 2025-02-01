@@ -12,6 +12,7 @@ import HomePage from "./pages/Home.page";
 import { theme } from "./theme";
 import { Notifications } from "@mantine/notifications";
 import "@mantine/notifications/styles.css";
+import { clarity } from "react-microsoft-clarity";
 
 // Create a client
 const queryClient = new QueryClient({
@@ -25,11 +26,7 @@ const queryClient = new QueryClient({
 
 export default function App() {
   useEffect(() => {
-    fetch("/api/todos")
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-      });
+    clarity.init(import.meta.env.VITE_CLARITY_ID);
   }, []);
   return (
     <QueryClientProvider client={queryClient}>

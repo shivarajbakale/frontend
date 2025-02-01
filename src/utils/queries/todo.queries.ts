@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { todosApi } from "../api/todos.api";
 import { Todo } from "../types/todo.types";
 
@@ -24,8 +24,20 @@ export const useUpdateTodo = () => {
 };
 
 export const useDeleteTodo = () => {
+  const queryClient = useQueryClient();
   return useMutation({
     mutationFn: todosApi.delete,
+    onSuccess: (_, id) => {
+      // Get the current todos from cache
+      const previousTodos = queryClient.getQueryData<Todo[]>(["todos"]);
+      if (previousTodos) {
+        // Update cache by filtering out the deleted todo
+        queryClient.setQueryData(
+          ["todos"],
+          previousTodos.filter((todo) => todo.id !== id),
+        );
+      }
+    },
   });
 };
 

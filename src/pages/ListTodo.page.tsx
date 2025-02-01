@@ -6,22 +6,23 @@ import {
 } from "@/utils/queries/todo.queries";
 import { Container, Title, Stack } from "@mantine/core";
 import { notifications } from "@mantine/notifications";
-import { useEffect } from "react";
 
 const ListTodoPage = () => {
-  const { data: todos, refetch: refetchTodos } = useTodos();
+  const { data: todos } = useTodos();
   const { mutate: deleteTodo } = useDeleteTodo();
   const { mutate: updateTodo } = useUpdateTodo();
 
   const handleDelete = async (id: string) => {
     try {
-      await deleteTodo(id);
-      notifications.show({
-        title: "Success",
-        message: "Todo deleted successfully",
-        color: "green",
+      await deleteTodo(id, {
+        onSuccess: () => {
+          notifications.show({
+            title: "Success",
+            message: "Todo deleted successfully",
+            color: "green",
+          });
+        },
       });
-      refetchTodos();
     } catch (error) {
       notifications.show({
         title: "Error",
@@ -39,7 +40,6 @@ const ListTodoPage = () => {
         message: "Todo updated successfully",
         color: "green",
       });
-      refetchTodos();
     } catch (error) {
       notifications.show({
         title: "Error",
@@ -48,10 +48,6 @@ const ListTodoPage = () => {
       });
     }
   };
-
-  useEffect(() => {
-    refetchTodos();
-  }, []);
 
   return (
     <Container>

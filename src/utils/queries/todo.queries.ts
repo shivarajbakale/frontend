@@ -24,9 +24,21 @@ export const useCreateTodo = () => {
 };
 
 export const useUpdateTodo = () => {
+  const queryClient = useQueryClient();
   return useMutation({
     mutationFn: ({ id, updates }: { id: string; updates: Partial<Todo> }) =>
       todosApi.update(id, updates),
+    onSuccess: (updatedTodo) => {
+      const previousTodos = queryClient.getQueryData<Todo[]>(["todos"]);
+      if (previousTodos) {
+        queryClient.setQueryData(
+          ["todos"],
+          previousTodos.map((todo) =>
+            todo.id === updatedTodo.id ? updatedTodo : todo,
+          ),
+        );
+      }
+    },
   });
 };
 

@@ -16,6 +16,8 @@ export function Router() {
       <Route path="/todo/update/:id" element={<UpdateTodo />} />
       {/* Todo List Route */}
       <Route path="/todo/list" element={<ListTodoPage />} />
+      {/* Need a 404 route here */}
+      <Route path="*" element={<div>404</div>} />
     </Routes>
   );
 }

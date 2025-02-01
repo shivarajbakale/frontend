@@ -4,7 +4,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { useEffect } from "react";
 import { BrowserRouter } from "react-router-dom";
-import { DatabaseProvider } from "./db/DatabaseProvider";
+
 import { Router } from "./pages/routes";
 import { theme } from "./theme";
 import { Notifications } from "@mantine/notifications";
@@ -30,15 +30,13 @@ export default function App() {
   }, []);
   return (
     <QueryClientProvider client={queryClient}>
-      <DatabaseProvider>
-        <BrowserRouter>
-          <MantineProvider theme={theme}>
-            <Notifications />
-            <Router />
-          </MantineProvider>
-        </BrowserRouter>
-        <ReactQueryDevtools initialIsOpen={false} />
-      </DatabaseProvider>
+      <BrowserRouter>
+        <MantineProvider theme={theme}>
+          <Notifications />
+          <Router />
+        </MantineProvider>
+      </BrowserRouter>
+      <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );
 }

@@ -8,12 +8,6 @@ export const todosApi = {
     return response.data;
   },
 
-  // Get todos by user ID
-  getByUserId: async (userId: string) => {
-    const response = await apiClient.get<Todo[]>(`/todos/user/${userId}`);
-    return response.data;
-  },
-
   // Get single todo
   getById: async (id: string) => {
     const response = await apiClient.get<Todo>(`/todos/${id}`);
@@ -42,26 +36,6 @@ export const todosApi = {
     const response = await apiClient.patch<Todo>(`/todos/${id}/complete`, {
       completed,
     });
-    return response.data;
-  },
-
-  // Update todo priority
-  updatePriority: async (id: string, priority: "low" | "medium" | "high") => {
-    const response = await apiClient.patch<Todo>(`/todos/${id}/priority`, {
-      priority,
-    });
-    return response.data;
-  },
-
-  // Add tag to todo
-  addTag: async (id: string, tag: string) => {
-    const response = await apiClient.post<Todo>(`/todos/${id}/tags`, { tag });
-    return response.data;
-  },
-
-  // Remove tag from todo
-  removeTag: async (id: string, tag: string) => {
-    const response = await apiClient.delete<Todo>(`/todos/${id}/tags/${tag}`);
     return response.data;
   },
 };

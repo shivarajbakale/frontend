@@ -5,11 +5,9 @@ import { jsonServerClient } from "./client";
 
 // Request body types
 interface CreateUserRequest
-  extends Omit<
-    User,
-    "id" | "fullName" | "createdAt" | "updatedAt" | "lastLogin"
-  > {}
-interface UpdateUserRequest extends Partial<Omit<User, "fullName">> {}
+  extends Omit<User, "id" | "createdAt" | "updatedAt"> {}
+interface UpdateUserRequest
+  extends Partial<Omit<User, "createdAt" | "updatedAt">> {}
 
 export const userHandlers = [
   // Get all users

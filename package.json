@@ -20,7 +20,8 @@
     "storybook:build": "storybook build",
     "server": "json-server --watch db.json --port 3002",
     "generate:mock": "node scripts/generateMockData.js",
-    "dev:all": "yarn generate:mock && concurrently \"yarn dev\" \"yarn server\""
+    "dev:all": "yarn generate:mock && concurrently \"yarn dev\" \"yarn server\"",
+    "prettier:fix": "prettier --write \"**/*.{ts,tsx}\""
   },
   "dependencies": {
     "@mantine/carousel": "^7.16.1",

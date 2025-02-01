@@ -21,18 +21,24 @@ export const Default: Story = {
         title: "Learn React",
         description: "Learn React fundamentals",
         completed: false,
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
       },
       {
         id: "2",
         title: "Learn TypeScript",
         description: "Learn TypeScript basics",
         completed: true,
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
       },
       {
         id: "3",
         title: "Build a project",
         description: "Build a full-stack project",
         completed: false,
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
       },
     ],
     onDelete: (id) => {
@@ -40,6 +46,9 @@ export const Default: Story = {
     },
     onEdit: (id) => {
       console.log("edit", id);
+    },
+    onToggleComplete: (id) => {
+      console.log("toggle complete", id);
     },
   },
   render: (args) => <ListTodo {...args} />,

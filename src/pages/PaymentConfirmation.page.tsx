@@ -15,7 +15,7 @@ import {
   type PaymentStatus,
 } from "@/utils/config/stripe.config";
 
-export const PaymentConfirmationPage = () => {
+const PaymentConfirmationPage = () => {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   const [status, setStatus] = useState<PaymentStatus>();
@@ -78,3 +78,5 @@ export const PaymentConfirmationPage = () => {
     </Container>
   );
 };
+
+export default PaymentConfirmationPage;

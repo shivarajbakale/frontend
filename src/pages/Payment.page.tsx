@@ -12,7 +12,7 @@ import { PaymentForm } from "@/components/organisms/forms/PaymentForm/PaymentFor
 import { createPaymentIntent } from "@/utils/api/payment.api";
 import { useNavigate } from "react-router-dom";
 
-export const PaymentPage = () => {
+const PaymentPage = () => {
   const [amount, setAmount] = useState<number>(0);
   const [clientSecret, setClientSecret] = useState<string>();
   const navigate = useNavigate();
@@ -66,3 +66,5 @@ export const PaymentPage = () => {
     </Container>
   );
 };
+
+export default PaymentPage;

@@ -1,6 +1,6 @@
 import { Container, Title, Text, Stack } from "@mantine/core";
 
-export const HomePage = () => {
+const HomePage = () => {
   return (
     <Container>
       <Stack gap="md">

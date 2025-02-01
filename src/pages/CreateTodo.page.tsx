@@ -11,6 +11,7 @@ const CreateTodoPage = () => {
 
   const handleSubmit = (values: any) => {
     createTodo(values);
+    navigate("/");
   };
 
   useEffect(() => {

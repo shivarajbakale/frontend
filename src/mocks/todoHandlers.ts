@@ -1,11 +1,7 @@
 import { http, HttpResponse } from "msw";
 import axios from "axios";
-import { Todo } from "../utils/types/todo.types";
 import { jsonServerClient } from "./client";
-
-// Request body types
-type CreateTodoRequest = Omit<Todo, "id" | "createdAt" | "updatedAt">;
-type UpdateTodoRequest = Partial<Omit<Todo, "id" | "createdAt" | "updatedAt">>;
+import { Todo } from "@/utils/types/todo.types";
 
 export const todoHandlers = [
   // Get all todos
@@ -35,7 +31,7 @@ export const todoHandlers = [
   // Create todo
   http.post("/api/todos", async ({ request }) => {
     try {
-      const todo = (await request.json()) as CreateTodoRequest;
+      const todo = (await request.json()) as Todo;
       const newTodo = {
         ...todo,
         createdAt: new Date().toISOString(),
@@ -52,7 +48,7 @@ export const todoHandlers = [
   http.patch("/api/todos/:id", async ({ params, request }) => {
     try {
       const { id } = params;
-      const updates = (await request.json()) as UpdateTodoRequest;
+      const updates = (await request.json()) as Partial<Todo>;
       const updatedTodo = {
         ...updates,
         updatedAt: new Date().toISOString(),

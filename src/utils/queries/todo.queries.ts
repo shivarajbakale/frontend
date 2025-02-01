@@ -11,8 +11,15 @@ export const useTodos = () => {
 };
 
 export const useCreateTodo = () => {
+  const queryClient = useQueryClient();
   return useMutation({
     mutationFn: todosApi.create,
+    onSuccess: (newTodo) => {
+      const previousTodos = queryClient.getQueryData<Todo[]>(["todos"]);
+      if (previousTodos) {
+        queryClient.setQueryData(["todos"], [newTodo, ...previousTodos]);
+      }
+    },
   });
 };
 

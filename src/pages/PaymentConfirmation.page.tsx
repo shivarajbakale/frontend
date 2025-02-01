@@ -7,7 +7,7 @@ import {
   Text,
   Stack,
   Button,
-  rem,
+  ThemeIcon,
 } from "@mantine/core";
 import { getPaymentStatus } from "@/utils/api/payment.api";
 import {
@@ -52,12 +52,13 @@ export const PaymentConfirmationPage = () => {
       <Paper p="xl" radius="md" withBorder>
         <Stack align="center" gap="md">
           {status === PAYMENT_STATUS.SUCCEEDED ? (
-            <IconCheck
-              style={{ width: rem(48), height: rem(48) }}
-              color="green"
-            />
+            <ThemeIcon size={48} color="green" radius="xl">
+              ✓
+            </ThemeIcon>
           ) : (
-            <IconX style={{ width: rem(48), height: rem(48) }} color="red" />
+            <ThemeIcon size={48} color="red" radius="xl">
+              ✕
+            </ThemeIcon>
           )}
           <Title order={2}>
             {status === PAYMENT_STATUS.SUCCEEDED

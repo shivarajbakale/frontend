@@ -1,22 +1,67 @@
+import { Todo } from "../types/todo.types";
 import apiClient from "./client";
-import { TodoType } from "../types/todo.types";
 
-export const createTodo = async (todo: TodoType) => {
-  const response = await apiClient.post("/todos", todo);
-  return response.data;
-};
+export const todosApi = {
+  // Get all todos
+  getAll: async () => {
+    const response = await apiClient.get<Todo[]>("/todos");
+    return response.data;
+  },
 
-export const getTodos = async () => {
-  const response = await apiClient.get("/todos");
-  return response.data;
-};
+  // Get todos by user ID
+  getByUserId: async (userId: string) => {
+    const response = await apiClient.get<Todo[]>(`/todos/user/${userId}`);
+    return response.data;
+  },
 
-export const updateTodo = async (todo: TodoType) => {
-  const response = await apiClient.put(`/todos/${todo.id}`, todo);
-  return response.data;
-};
+  // Get single todo
+  getById: async (id: string) => {
+    const response = await apiClient.get<Todo>(`/todos/${id}`);
+    return response.data;
+  },
 
-export const deleteTodo = async (id: string) => {
-  const response = await apiClient.delete(`/todos/${id}`);
-  return response.data;
+  // Create todo
+  create: async (todo: Omit<Todo, "id" | "createdAt" | "updatedAt">) => {
+    const response = await apiClient.post<Todo>("/todos", todo);
+    return response.data;
+  },
+
+  // Update todo
+  update: async (id: string, updates: Partial<Todo>) => {
+    const response = await apiClient.patch<Todo>(`/todos/${id}`, updates);
+    return response.data;
+  },
+
+  // Delete todo
+  delete: async (id: string) => {
+    await apiClient.delete(`/todos/${id}`);
+  },
+
+  // Toggle todo completion
+  toggleComplete: async (id: string, completed: boolean) => {
+    const response = await apiClient.patch<Todo>(`/todos/${id}/complete`, {
+      completed,
+    });
+    return response.data;
+  },
+
+  // Update todo priority
+  updatePriority: async (id: string, priority: "low" | "medium" | "high") => {
+    const response = await apiClient.patch<Todo>(`/todos/${id}/priority`, {
+      priority,
+    });
+    return response.data;
+  },
+
+  // Add tag to todo
+  addTag: async (id: string, tag: string) => {
+    const response = await apiClient.post<Todo>(`/todos/${id}/tags`, { tag });
+    return response.data;
+  },
+
+  // Remove tag from todo
+  removeTag: async (id: string, tag: string) => {
+    const response = await apiClient.delete<Todo>(`/todos/${id}/tags/${tag}`);
+    return response.data;
+  },
 };
